@@ -8,6 +8,7 @@ class MSE(Loss):
     def derived(self, y, y_pred):
         return y_pred - y
 
+
 class BinaryCrossEntropy(Loss):
     def forward(self, y, y_pred):
         epsilon = 1e-10
@@ -19,3 +20,14 @@ class BinaryCrossEntropy(Loss):
         y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
         return (y_pred - y) / (y_pred * (1 - y_pred))
 
+
+class CategoricalCrossEntropy(Loss):
+    def forward(self, y, y_pred):
+        epsilon = 1e-10
+        y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+        return -np.sum(y * np.log(y_pred))
+
+    def derived(self, y, y_pred):
+        epsilon = 1e-10
+        y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+        return - (y / y_pred)

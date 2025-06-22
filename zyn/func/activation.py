@@ -24,3 +24,12 @@ class Tanh(Activation):
     def derived(self, inputs: np.ndarray) -> np.ndarray:
         return 1 - self.forward(inputs)**2
 
+class Softmax(Activation):
+    def forward(self, inputs: np.ndarray) -> np.ndarray:
+        exp_values = np.exp(inputs - np.max(inputs))
+        probabilities = exp_values / np.sum(exp_values)
+        return probabilities
+
+    def derived(self, inputs: np.ndarray) -> np.ndarray:
+        s = self.forward(inputs).reshape(-1, 1)
+        return np.diagflat(s) - s @ s.T

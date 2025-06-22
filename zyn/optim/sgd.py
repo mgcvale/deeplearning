@@ -27,8 +27,11 @@ class SGD(Optimizer):
         # calculate ∂ŷ/∂z (how the predicted output changes w.r.t to the pre-activation of the last layer
         dy_hat_dz = self.model.out.activation.derived(self.model.out.last_z)
 
-        # calculate δ for output layer
-        delta = dL_dy_hat * dy_hat_dz
+        # if activation.derived() a jacobian (such as when using Softmax), we need to do the matrix product instead of the element-wise product.
+        if len(dy_hat_dz.shape) > 1: # it has more than 1 dimension (either a jacobian or a batch, because we don't support batching yet, this is a jacobian)
+            delta = dy_hat_dz @ dL_dy_hat
+        else:
+            delta = dL_dy_hat * dy_hat_dz
 
         prev_layer = self.model.out
         prev_delta = delta
