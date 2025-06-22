@@ -2,16 +2,18 @@ from typing import List
 
 from zyn.core.base import BaseModel
 from zyn.func.base import Loss
+from zyn.optim.base import Optimizer
+
 import numpy as np
 
 
-class SGD:
+class SGD(Optimizer):
     def __init__(self, model: BaseModel, loss: Loss, lr=0.01):
         self.lr = lr
         self.model = model
         self.loss = loss
 
-    def backpropagate(self, y_true: float, y_pred: float) -> List[np.ndarray]:
+    def backpropagate(self, y_true: float, y_pred: float) -> tuple[List[np.ndarray], List[np.ndarray]]:
         if self.model.out.last_z is None:
             raise RuntimeError("Cannot backpropagate before forward pass: no stored pre-activations")
 
