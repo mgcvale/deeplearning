@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import numpy as np
-from zyn.core.layer.base import Layer
+from mglearn.core.layer.base import Layer
 
 
 class BaseModel(ABC):

@@ -1,6 +1,6 @@
-from zyn.core.layer.base import Layer
-from zyn.func.activation import ReLU, Sigmoid, Tanh
-from zyn.func.base import Activation
+from mglearn.core.layer.base import Layer
+from mglearn.func.activation import ReLU, Sigmoid, Tanh
+from mglearn.func.base import Activation
 import numpy as np
 
 class Dense(Layer):
@@ -24,4 +24,3 @@ class Dense(Layer):
                              in_vals) + self.biases  # element-wise multiplication of every weight with every in_val to every out neuron
         self.last_a = self.activation.forward(self.last_z)
         return self.last_a
-

@@ -1,4 +1,4 @@
-from zyn.func.base import Activation
+from mglearn.func.base import Activation
 import numpy as np
 
 class ReLU(Activation):

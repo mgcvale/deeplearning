@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import numpy as np
 
-from zyn.func.base import Activation
+from mglearn.func.base import Activation
 
 
 class Layer(ABC):
@@ -16,4 +16,3 @@ class Layer(ABC):
     @abstractmethod
     def forward(self, inputs: np.ndarray) -> np.ndarray:
         pass
-

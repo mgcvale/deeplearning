@@ -1,8 +1,8 @@
 from typing import List
 
-from zyn.core.base import BaseModel
-from zyn.func.base import Loss
-from zyn.optim.base import Optimizer
+from mglearn.core.base import BaseModel
+from mglearn.func.base import Loss
+from mglearn.optim.base import Optimizer
 
 import numpy as np
 
@@ -75,4 +75,3 @@ class SGD(Optimizer):
 
             # now, the biases
             layer.biases -= layer_b_grads * self.lr
-

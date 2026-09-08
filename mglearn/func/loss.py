@@ -1,4 +1,4 @@
-from zyn.func.base import Loss
+from mglearn.func.base import Loss
 import numpy as np
 
 class MSE(Loss):
